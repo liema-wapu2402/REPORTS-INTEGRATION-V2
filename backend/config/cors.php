@@ -3,10 +3,11 @@
 return [
     'paths' => ['api/*'],
     'allowed_methods' => ['*'],
-    'allowed_origins' => [env('FRONTEND_URL', 'http://localhost:5173')],
+    // Comma-separated, e.g. "https://app.vercel.app,https://app-git-main-me.vercel.app"
+    'allowed_origins' => array_values(array_filter(array_map('trim', explode(',', env('FRONTEND_URL', 'http://localhost:5173'))))),
     'allowed_origins_patterns' => [],
     'allowed_headers' => ['*'],
-    'exposed_headers' => [],
+    'exposed_headers' => ['Content-Disposition'],
     'max_age' => 0,
-    'supports_credentials' => true,
+    'supports_credentials' => false,
 ];

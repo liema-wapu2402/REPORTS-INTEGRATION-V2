@@ -4,19 +4,15 @@ services:
     runtime: docker
     rootDir: backend
     dockerfilePath: ./Dockerfile
-    plan: standard            # Chromium needs more than 512 MB
+    plan: free
     healthCheckPath: /up
-    disk:
-      name: reports-data
-      mountPath: /data
-      sizeGB: 2
     envVars:
       - { key: APP_NAME, value: Report Integrations }
       - { key: APP_ENV, value: production }
       - { key: APP_DEBUG, value: "false" }
-      - { key: APP_KEY, sync: false }          # php artisan key:generate --show
-      - { key: APP_URL, sync: false }          # https://reports-api.onrender.com
-      - { key: FRONTEND_URL, sync: false }     # https://your-app.vercel.app (comma-separate for more)
+      - { key: APP_KEY, sync: false } # php artisan key:generate --show
+      - { key: APP_URL, sync: false } # https://reports-api.onrender.com
+      - { key: FRONTEND_URL, sync: false } # https://your-app.vercel.app (comma-separate for more)
       - { key: LOG_CHANNEL, value: stderr }
       - { key: SESSION_DRIVER, value: array }
       - { key: CACHE_STORE, value: file }
@@ -25,10 +21,6 @@ services:
       - { key: NODE_BINARY_PATH, value: /usr/bin/node }
       - { key: NPM_BINARY_PATH, value: /usr/bin/npm }
       - { key: CHROME_PATH, value: /usr/bin/chromium }
-      # ---- Database: pick ONE block ----
-      # A) SQLite on the Render disk (zero-risk fallback)
+      # Free tier has no disk: SQLite file + generated reports reset on every restart/redeploy.
       - { key: DB_CONNECTION, value: sqlite }
-      - { key: DB_DATABASE, value: /data/database.sqlite }
-      # B) Turso (needs turso/libsql-laravel + native ext): replace A with
-      #    DB_CONNECTION=libsql, DB_URL=libsql://<db>.turso.io, DB_PASSWORD=<token>
-      #    (set in the Render dashboard; check the package README for exact keys)
+      - { key: DB_DATABASE, value: /app/database/database.sqlite }

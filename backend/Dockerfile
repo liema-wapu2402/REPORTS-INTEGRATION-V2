@@ -21,7 +21,7 @@ COPY . .
 RUN mkdir -p storage/framework/cache/data storage/framework/sessions storage/framework/views \
       storage/logs storage/app/reports storage/app/templates bootstrap/cache \
     && composer install --no-dev --optimize-autoloader --no-interaction \
-    && npm install puppeteer --prefix . --ignore-scripts=false
+    && npm install puppeteer @libsql/client --prefix . --ignore-scripts=false
 
 COPY docker/entrypoint.sh /entrypoint.sh
 RUN sed -i 's/\r$//' /entrypoint.sh && chmod +x /entrypoint.sh

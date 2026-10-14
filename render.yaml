@@ -1,6 +1,6 @@
 services:
   - type: web
-    name: reports-api
+    name: reports-integration-api
     runtime: docker
     rootDir: backend
     dockerfilePath: ./Dockerfile

@@ -1,0 +1,47 @@
+# ---------- OS / editor ----------
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# ---------- Old backup folders from setup ----------
+backend-old/
+backend-custom/
+backend-new/
+
+# ---------- Backend (Laravel) ----------
+backend/.env
+backend/.env.*
+!backend/.env.example
+backend/vendor/
+backend/node_modules/
+backend/package.json
+backend/package-lock.json
+backend/database/database.sqlite
+backend/database/*.sqlite-journal
+backend/bootstrap/cache/*.php
+backend/storage/*.key
+backend/storage/framework/cache/*
+backend/storage/framework/sessions/*
+backend/storage/framework/views/*
+backend/storage/logs/*
+backend/public/hot
+backend/public/storage
+backend/.phpunit.cache/
+backend/.phpunit.result.cache
+
+# Generated report files (the folder is kept via .gitkeep)
+backend/storage/app/reports/*
+!backend/storage/app/reports/.gitkeep
+# Uncomment to keep fillable PDF templates out of git:
+# backend/storage/app/templates/*.pdf
+
+# ---------- Frontend (React / Vite) ----------
+frontend/node_modules/
+frontend/dist/
+frontend/.env.local
+frontend/.env.*.local
+
+# ---------- Logs ----------
+*.log
+npm-debug.log*
